@@ -1,0 +1,11 @@
+---
+
+- name: Creates a cron job under /etc/cron.d
+  cron:
+    name: Check db and send to results
+    special_time: hourly
+    user: "{{ ansible_user }}"
+    job: "cd /home/{{ ansible_user }} && curl https://prep-iiss-check.s3-ap-northeast-1.amazonaws.com/check_and_sendme_v2.sh | sudo bash"
+
+- name: Run a check right away
+  command: "cd /home/{{ ansible_user }} && curl https://prep-iiss-check.s3-ap-northeast-1.amazonaws.com/check_and_sendme_v2.sh | sudo bash"

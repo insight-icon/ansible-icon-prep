@@ -1,0 +1,6 @@
+---
+- hosts: all
+  become: true
+  roles:
+    - sentry-pack
+    - node-clean-up

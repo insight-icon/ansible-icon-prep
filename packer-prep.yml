@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: true
+  roles:
+    - p-rep-pack
+    - ansible-hardening
+    - ansible-os-hardening
+    - ansible-ssh-hardening
+    - role-secure-docker-daemon
+    - ebs-automatic-nvme-mapping
+    - node-clean-up

@@ -1,0 +1,18 @@
+[Unit]
+Description=P-Rep docker-compose.yml startup
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Restart=on-failure
+User={{ ansible_user }}
+Group={{ ansible_user }}
+ExecStart=/usr/bin/docker-compose -f /home/{{ ansible_user }}/docker-compose.yml up -d
+ExecStop=/usr/bin/docker-compose -f /home/{{ ansible_user }}/docker-compose.yml down
+KillSignal=SIGTERM
+
+[Install]
+WantedBy=multi-user.target
+
+
+

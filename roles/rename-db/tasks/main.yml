@@ -1,0 +1,33 @@
+---
+
+#- name: Copy service
+#  template:
+#    src: service.prep.j2
+#    dest: /etc/systemd/system/prep.service
+#  notify: systemctl
+#
+#- name: start
+#  service: name=prep state=enable
+
+- name: "Stop node application via docker-compose"
+  docker_compose:
+    project_src: /home/ubuntu
+    stopped: yes
+- name: "Move db files to new IP address"
+  command: mv db_{{ old_ip }}:7100 db_{{ new_ip }}:7100
+  args:
+    chdir: /home/{{ ansible_user }}/data/{{ data_directory | default("PREP-TestNet") }}/
+  when: data_directory=="
+
+db_3.88.216.66:7100
+
+- name: "Move db files to new IP address"
+  command: mv db_{{ old_ip }}:7100 db_{{ new_ip }}:7100
+  args:
+    chdir: /home/{{ ansible_user }}/data/{{ data_directory | default("PREP-TestNet") }}/
+
+- name: "Start node application via docker-compose"
+  docker_compose:
+    project_src: /home/ubuntu
+    state: present
+

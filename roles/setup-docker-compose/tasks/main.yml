@@ -1,0 +1,31 @@
+- name: "Create data directory"
+  file:
+    path: /home/ubuntu/data
+    mode: '0755'
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+
+- name: "Create cert directory"
+  file:
+    path: /home/ubuntu/cert
+    mode: '0755'
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+
+- name: "Render the docker-compose file"
+  template:
+    src: docker-compose.yml
+    dest: /home/ubuntu/docker-compose.yml
+    mode: '0440'
+    owner: "ubuntu"
+    group: "ubuntu"
+
+- name: "Change ownership of everything in home"
+  file:
+    path: /home/ubuntu
+    state: directory
+    recurse: yes
+    owner: ubuntu
+    group: ubuntu

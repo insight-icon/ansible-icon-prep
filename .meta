@@ -1,0 +1,20 @@
+{
+  "projects": {
+    "roles/ansible-grafana": "https://github.com/cloudalchemy/ansible-grafana --branch 0.16.0",
+    "roles/ansible-prometheus": "https://github.com/cloudalchemy/ansible-prometheus --branch 2.11.0",
+    "roles/ansible-alertmanager": "https://github.com/cloudalchemy/ansible-alertmanager --branch 0.15.0",
+    "roles/setup-app-rhizome": "https://github.com/rhizomeicx/rhizome-node-toolbox",
+    "roles/setup-app-block42": "https://github.com/robc-io/icon-prep-network-setup",
+    "roles/setup-app-official": "https://github.com/robc-io/nginx_docker",
+    "roles/ansible-hardening": "git@github.com:openstack/ansible-hardening.git",
+    "roles/ansible-os-hardening": "git@github.com:dev-sec/ansible-os-hardening.git",
+    "roles/ansible-ssh-hardening": "git@github.com:dev-sec/ansible-ssh-hardening.git",
+    "roles/role-secure-docker-daemon": "git@github.com:ansible/role-secure-docker-daemon.git",
+    "roles/p-rep-pack": "git@github.com:insight-infrastructure/p-rep-pack.git",
+    "roles/citizen-pack": "git@github.com:insight-infrastructure/citizen-pack.git",
+    "roles/node-clean-up": "git@github.com:insight-infrastructure/node-clean-up.git",
+    "roles/bastion-pack": "git@github.com:insight-infrastructure/bastion-pack.git",
+    "roles/sentry-pack": "git@github.com:insight-infrastructure/sentry-pack.git",
+    "roles/ebs-automatic-nvme-mapping": "https://github.com/transferwise/ansible-ebs-automatic-nvme-mapping"
+  }
+}

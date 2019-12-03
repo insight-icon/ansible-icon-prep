@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: true
+  roles:
+    - ansible-hardening
+    - ansible-os-hardening
+    - ansible-ssh-hardening
+    - role-secure-docker-daemon
+    - node-clean-up

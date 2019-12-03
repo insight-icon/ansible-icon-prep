@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: true
+  roles:
+  - disable-ipv6
+  - install-packages
+  - mount-volumes
+  - setup-app-official
+  - keystore
+  - start-docker
+  - check-db
