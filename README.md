@@ -5,9 +5,10 @@ Ansible playbooks and roles for the ICON Blockchain
 ## Prerequisites 
 
 ```bash
-pip install --user ansible 
 sudo apt install nodejs 
 npm i -g meta 
+meta git clone . # at the base of this repo 
+pip install --user ansible 
 ```
 
 ## To run a playbook 
