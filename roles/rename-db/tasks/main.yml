@@ -1,33 +1,24 @@
 ---
 
-#- name: Copy service
-#  template:
-#    src: service.prep.j2
-#    dest: /etc/systemd/system/prep.service
-#  notify: systemctl
-#
-#- name: start
-#  service: name=prep state=enable
-
-- name: "Stop node application via docker-compose"
+- name: Stop node application via docker-compose
   docker_compose:
     project_src: /home/ubuntu
     stopped: yes
-- name: "Move db files to new IP address"
-  command: mv db_{{ old_ip }}:7100 db_{{ new_ip }}:7100
+
+# Sometimes a folder called lost+found shows up here which breaks this
+# On mainnet, seen this folder called "mainnet" and also loopchain
+# Going to rely on group_vars conditional to populate this dir name
+#- name: Get name of first dir under data/ -> depends on network
+#  shell: ls /home/{{ ansible_user }}/data/
+#  register: data_directory
+
+- name: Get current IP
+  shell: curl ifconfig.co
+  register: current_ip
+
+- name: Move db files to new IP address
+  command: mv db_{{ current_ip.stdout }}:7100_icon_dex db_{{ main_ip }}:7100_icon_dex
+  become: yes
   args:
-    chdir: /home/{{ ansible_user }}/data/{{ data_directory | default("PREP-TestNet") }}/
-  when: data_directory=="
-
-db_3.88.216.66:7100
-
-- name: "Move db files to new IP address"
-  command: mv db_{{ old_ip }}:7100 db_{{ new_ip }}:7100
-  args:
-    chdir: /home/{{ ansible_user }}/data/{{ data_directory | default("PREP-TestNet") }}/
-
-- name: "Start node application via docker-compose"
-  docker_compose:
-    project_src: /home/ubuntu
-    state: present
+    chdir: "/home/{{ ansible_user }}/data/{{ data_directory }}/.storage"
 

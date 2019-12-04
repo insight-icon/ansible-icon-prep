@@ -4,6 +4,6 @@
   copy:
     src: "{{ keystore_path }}"
     dest: /home/ubuntu/cert/{{ keystore_path | basename }}
-    mode: '0440'
+    mode: '0600'
     owner: "ubuntu"
     group: "ubuntu"

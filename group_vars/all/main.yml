@@ -1,0 +1,6 @@
+
+# On mainnet, seen this folder called "mainnet" and also loopchain
+data_directory: "{% if network_name == 'mainnet' %}mainnet{% else %}PREP-TestNet{% endif %}"
+
+# Image id depends on the network.
+image: "{% if network_name == 'mainnet' %}iconloop/prep-node:1911121115x323d60{% else %}iconloop/prep-node:1911121115x323d60-dev{% endif %}"

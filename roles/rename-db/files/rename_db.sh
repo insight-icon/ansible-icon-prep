@@ -1,4 +1,5 @@
 #!/bin/bash
+NET_DATA_DIR=$(ls /home/ubuntu)
 DBDIR="/home/ubuntu/data/loopchain"
 MYIP=`curl http://169.254.169.254/latest/meta-data/public-ipv4`
 ASISNAME=`ls -t ${DBDIR}/.storage| head -1`

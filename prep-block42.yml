@@ -8,4 +8,5 @@
   - setup-app-block42
   - keystore
   - start-docker
-  - check-db
+  - wait-for-sync
+  - rename-db
