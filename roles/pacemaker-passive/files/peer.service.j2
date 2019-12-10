@@ -1,0 +1,17 @@
+[Unit]
+Description=Loopchain Peer
+After=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+StandardError=null
+StandardOutput=null
+WorkingDirectory=/home/ubuntu
+ExecStartPre=/home/ubuntu/cluster.sh
+ExecStart=/usr/local/bin/docker-compose -f /home/ubuntu/docker-compose.yml up -d
+ExecStop=/usr/sbin/pcs resource disable Backup
+ExecStop=/usr/local/bin/docker-compose -f /home/ubuntu/docker-compose.yml down
+
+[Install]
+WantedBy=multi-user.target

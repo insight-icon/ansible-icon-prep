@@ -1,0 +1,97 @@
+---
+
+- name: Update the hostname
+  hostname:
+    name: {{ hostname }}
+
+- name: Unconditionally reboot the machine with all defaults
+  reboot:
+
+- name: Render the hosts file
+  template:
+    src: hosts.j2
+    dest: /etc/hosts
+    mode: '0644'
+
+- name: Update repositories cache
+  apt:
+    update_cache: yes
+
+- name: Upgrade packages to the latest version
+  apt:
+    upgrade: dist
+
+- name: Install required packages
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - pacemaker
+      - crmsh
+      - pcs
+      - haveged
+      - aws-cli
+
+- name: Create a new corosync key only if it has not been made yet
+  script: corosync-keygen
+  become: yes
+  args:
+    creates: /etc/corosync/authkey
+
+- hosts: {{ slave_public_ip }}
+  tasks:
+    - name: Transfer file from ServerA to ServerB
+      synchronize:
+        src: /etc/corosync/authkey
+        dest: /etc/corosync/authkey
+      delegate_to: {{ default_ipv4.address }}
+
+- name: Make sure a service is running
+  systemd:
+    state: started
+    enabled: yes
+    name: corosync
+
+- name: Make sure a service is running
+  systemd:
+    state: started
+    enabled: yes
+    name: pacemaker
+
+- name: Create a new corosync key only if it has not been made yet
+  script: corosync-keygen
+  args:
+    creates: /etc/corosync/authkey
+
+- name: Copy peer service
+  template:
+    src: peer.service.j2
+    dest: /etc/systemd/system/peer.service
+  notify: systemctl
+
+- name: start
+  service: name=prep state=enable
+
+- name: Copy peer service
+  template:
+    src: back_peer.service.j2
+    dest: /etc/systemd/system/back_peer.service
+  notify: systemctl
+
+- name: start
+  service: name=prep state=enable
+
+#crm configure property stonith-enabled=false
+#crm configure property no-quorum-policy=ignore
+#crm configure show
+#
+#sudo apt update
+#sudo apt install aws-cli
+## change to root, this is necessary
+#sudo su -
+#aws configure
+#
+#
+#Create Peer and Backup Peer Services
+#(both servers)
+#Create peer.service under /lib/systemd/system/
