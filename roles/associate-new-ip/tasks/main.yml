@@ -1,0 +1,15 @@
+---
+
+- name: a play that runs entirely on the ansible host
+  hosts: 127.0.0.1
+  connection: local
+  tasks:
+  - name: Associate eip
+    ec2_eip:
+      device_id: "{{ instance_id }}"
+      ip: "{{ public_ip }}"
+
+#- name: Associate eip
+#  ec2_eip:
+#    device_id: "{{ instance_id }}"
+#    ip: "{{ public_ip }}"

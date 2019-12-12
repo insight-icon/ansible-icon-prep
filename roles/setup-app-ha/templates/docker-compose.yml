@@ -1,0 +1,51 @@
+version: '3'
+services:
+   prep:
+      image: iconloop/prep-node:1910211829xc2286d
+      container_name: "backup-node"
+      restart: always
+      environment:
+         LOOPCHAIN_LOG_LEVEL: "DEBUG"
+         ICON_LOG_LEVEL: "DEBUG"
+         DEFAULT_PATH: "/data/loopchain"
+         LOG_OUTPUT_TYPE: "file"
+         CERT_PATH: "/cert"
+         iissCalculatePeriod: "1800"
+         termPeriod: "1800"
+         PRIVATE_PATH: "{PATH TO KEYSTORE}"
+         PRIVATE_PASSWORD: "{KEYSTORE PASSWORD}"
+      cap_add:
+         - SYS_TIME
+      volumes:
+         - ./data:/data
+         - ./cert:/cert
+
+
+   nginx_throttle:
+      image: 'looploy/nginx:1.17.1'
+      container_name: nginx_1.17
+      environment:
+         NGINX_LOG_OUTPUT: 'file'
+         NGINX_LOG_TYPE: 'main'
+         NGINX_USER: 'root'
+         VIEW_CONFIG: "yes"
+         USE_NGINX_THROTTLE: "yes"
+         NGINX_THROTTLE_BY_URI: "yes"
+         NGINX_RATE_LIMIT: "200r/s"
+         NGINX_BURST: "5"
+         NGINX_SET_NODELAY: "no"
+         GRPC_PROXY_MODE: "yes"
+         USE_VTS_STATUS: "yes"
+         TZ: "GMT-9"
+         SET_REAL_IP_FROM: "0.0.0.0/0"
+         PREP_MODE: "yes"
+         NODE_CONTAINER_NAME: "backup-node"
+         PREP_NGINX_ALLOWIP: "yes"
+         NGINX_ALLOW_IP: "0.0.0.0/0"
+         NGINX_LOG_FORMAT: '$$realip_remote_addr $$remote_addr  $$remote_user [$$time_local] $$request $$status $$body_bytes_sent $$http_referer "$$http_user_agent" $$http_x_forwarded_for $$request_body'
+      volumes:
+         - ./data/loopchain/nginx:/var/log/nginx
+         - ./user_conf:/etc/nginx/user_conf
+      ports:
+         - 9000:9000
+         - 7100:7100
