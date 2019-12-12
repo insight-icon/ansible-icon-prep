@@ -15,6 +15,8 @@
     "roles/node-clean-up": "git@github.com:insight-infrastructure/node-clean-up.git",
     "roles/bastion-pack": "git@github.com:insight-infrastructure/bastion-pack.git",
     "roles/sentry-pack": "git@github.com:insight-infrastructure/sentry-pack.git",
+    "roles/ossec-server": "https://github.com/dj-wasabi/ansible-ossec-server",
+    "roles/ossec-agent": "https://github.com/dj-wasabi/ansible-ossec-agent",
     "roles/ebs-automatic-nvme-mapping": "https://github.com/transferwise/ansible-ebs-automatic-nvme-mapping"
   }
 }
