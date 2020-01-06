@@ -1,0 +1,7 @@
+- src: dev-sec.os-hardening
+  version: 5.2.1
+- src: dev-sec.ssh-hardening
+  version: 7.0.0
+
+- src: juju4.ansible-ipv6
+  version: 1.0.0
