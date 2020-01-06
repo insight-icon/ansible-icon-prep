@@ -7,3 +7,10 @@
     mode: '0600'
     owner: "ubuntu"
     group: "ubuntu"
+
+#- name: restart sshd
+#  command: service ssh restart
+
+#- name: Reboot for security updates
+#  reboot:
+#    reboot_timeout: 3600

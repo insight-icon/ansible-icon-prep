@@ -7,9 +7,9 @@
     - ansible-os-hardening
     - ansible-ssh-hardening
     - role-secure-docker-daemon
-    - ebs-automatic-nvme-mapping
-    - disable-ipv6
     - install-packages
+    - disable-ipv6
+    - ebs-automatic-nvme-mapping
     - mount-volumes
     - setup-app-block42
     - keystore
