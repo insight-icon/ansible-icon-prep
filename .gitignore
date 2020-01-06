@@ -21,3 +21,5 @@ roles/node-clean-up
 roles/bastion-pack
 roles/sentry-pack
 roles/ebs-automatic-nvme-mapping
+roles/ossec-server
+roles/ossec-agent
