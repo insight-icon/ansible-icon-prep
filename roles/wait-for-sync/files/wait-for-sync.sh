@@ -7,8 +7,9 @@ done
 
 echo 'service is available and about to sync'
 
+#EvaluateNetwork
 declare -A array
-for stateCode in Watch Vote EvaluateNetwork
+for stateCode in Watch Vote
 do
     array[$stateCode]=1
 done
