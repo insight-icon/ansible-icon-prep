@@ -2,6 +2,8 @@
 - hosts: all
   become: true
   roles:
+  - ebs-automatic-nvme-mapping
+  - mount-volumes
   - ansible-prometheus
   - ansible-alertmanager
   - ansible-grafana

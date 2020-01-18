@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: true
+  roles:
+    - wazuh-pack  # This updates packages and installs some prerequisites
+    - ebs-automatic-nvme-mapping
+    - mount-volumes
+    - ansible-elasticsearch
+    - ansible-kibana
+    - wazuh-manager
+    - ansible-beats

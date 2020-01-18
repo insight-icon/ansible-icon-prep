@@ -3,6 +3,7 @@
     "roles/ansible-grafana": "https://github.com/cloudalchemy/ansible-grafana --branch 0.16.0",
     "roles/ansible-prometheus": "https://github.com/cloudalchemy/ansible-prometheus --branch 2.11.0",
     "roles/ansible-alertmanager": "https://github.com/cloudalchemy/ansible-alertmanager --branch 0.15.0",
+    "roles/ansible-elasticsearch": "https://github.com/elastic/ansible-elasticsearch",
     "roles/setup-app-rhizome": "https://github.com/rhizomeicx/rhizome-node-toolbox",
     "roles/setup-app-block42": "https://github.com/robc-io/icon-prep-network-setup",
     "roles/setup-app-official": "https://github.com/robc-io/nginx_docker",
@@ -17,6 +18,8 @@
     "roles/sentry-pack": "https://github.com/insight-infrastructure/sentry-pack.git",
     "roles/ossec-server": "https://github.com/dj-wasabi/ansible-ossec-server",
     "roles/ossec-agent": "https://github.com/dj-wasabi/ansible-ossec-agent",
-    "roles/ebs-automatic-nvme-mapping": "https://github.com/transferwise/ansible-ebs-automatic-nvme-mapping"
+    "roles/ebs-automatic-nvme-mapping": "https://github.com/transferwise/ansible-ebs-automatic-nvme-mapping",
+    "roles/ansible-beats": "https://github.com/elastic/ansible-beats",
+    "roles/ansible-kibana": "https://github.com/geerlingguy/ansible-role-kibana"
   }
 }
