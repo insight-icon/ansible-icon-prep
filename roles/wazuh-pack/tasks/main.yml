@@ -16,25 +16,17 @@
     name: "{{ packages }}"
     force_apt_get: yes
     state: latest
+    update_cache: yes
   vars:
     packages:
+      - software-properties-common
       - apt-transport-https
       - ca-certificates
-      - software-properties-common
       - gnupg-agent
+      - linux-aws
       - awscli
       - curl
       - jq
-
-- name: "Install required packages (Ubuntu only)"
-  apt:
-    name: "{{ packages }}"
-    force_apt_get: yes
-    state: latest
-  vars:
-    packages:
-      - linux-aws
-  when: ansible_distribution == 'Ubuntu'
 
 - name: "Create hard core limit file"
   file:
