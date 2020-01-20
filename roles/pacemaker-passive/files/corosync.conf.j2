@@ -1,0 +1,26 @@
+/etc/corosync/corosync.conf
+totem {
+    version: 2
+    cluster_name: peer_cluster
+    secauth: off
+    transport: udpu
+}
+nodelist {
+    node {
+        ring0_addr: {{ active_hostname }}
+        nodeid: 1
+    }
+node {
+        ring0_addr: {{ passive_hostname }}
+        nodeid: 2
+    }
+}
+quorum {
+    provider: corosync_votequorum
+    two_node: 1
+}
+logging {
+    to_logfile: yes
+    logfile: /var/log/corosync/corosync.log
+    to_syslog: yes
+}
