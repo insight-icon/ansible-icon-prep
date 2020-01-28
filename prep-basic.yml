@@ -2,7 +2,7 @@
 - hosts: all
   become: true
   roles:
-#    - p-rep-pack
+    - p-rep-pack
     - { role: "ansible-hardening", when: (ansible_hardening | bool | default(true) ) }
     - { role: "ansible-os-hardening", when: (ansible_hardening | bool | default(true) ) }
     - { role: "ansible-ssh-hardening", when: (ansible_hardening | bool | default(true) ) }

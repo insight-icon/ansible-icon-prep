@@ -2,7 +2,7 @@
 
 - name: Update the hostname
   hostname:
-    name: {{ hostname }}
+    name: "{{ hostname }}"
 
 - name: Unconditionally reboot the machine with all defaults
   reboot:
@@ -33,18 +33,18 @@
       - aws-cli
 
 - name: Create a new corosync key only if it has not been made yet
-  script: corosync-keygen
+  command: corosync-keygen
   become: yes
   args:
     creates: /etc/corosync/authkey
 
-- hosts: {{ slave_public_ip }}
-  tasks:
-    - name: Transfer file from ServerA to ServerB
-      synchronize:
-        src: /etc/corosync/authkey
-        dest: /etc/corosync/authkey
-      delegate_to: {{ default_ipv4.address }}
+#- hosts: {{ slave_public_ip }}
+#  tasks:
+#    - name: Transfer file from ServerA to ServerB
+#      synchronize:
+#        src: /etc/corosync/authkey
+#        dest: /etc/corosync/authkey
+#      delegate_to: {{ default_ipv4.address }}
 
 - name: Make sure a service is running
   systemd:
