@@ -8,6 +8,9 @@ README_INT.md
 roles/ansible-grafana
 roles/ansible-prometheus
 roles/ansible-alertmanager
+roles/ansible-beats
+roles/ansible-elasticsearch
+roles/ansible-node-exporter
 roles/setup-app-rhizome
 roles/setup-app-block42
 roles/setup-app-official
